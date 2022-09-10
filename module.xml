@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Export generator="Cache" version="25">
-  <Document name="interoperability-sample.ZPM">
+  <Document name="samba-iris-adapter.ZPM">
     <Module>
-      <Name>interoperability-sample</Name>
-      <Description>A simple IRIS interoperability application - reads data from Reddit and filter it.</Description>
-      <Version>0.0.6</Version>
+      <Name>samba-iris-adapter</Name>
+      <Description>Samba protocol (smb v2) support for InterSystems IRIS</Description>
+      <Version>1.0.0</Version>
       <Packaging>module</Packaging>
       <Dependencies>
         <ModuleReference>
