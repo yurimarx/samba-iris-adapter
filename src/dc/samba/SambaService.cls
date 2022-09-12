@@ -7,17 +7,16 @@ ClassMethod ListFiles(server, port, share, username, password, folder) As %Statu
     import smbclient
     from smbclient import listdir
     
-    username = "bob"
-    password = "bobspasswd"
-    server = "samba-iris-adapter-samba-1"
-    port = 446
-    share = "//samba-iris-adapter-samba-1/BobDrive/"
-    folder = "//samba-iris-adapter-samba-1/BobDrive/test"
+    try:
+        smbclient.register_session(server, port=port, username=username, password=password)
+        result = []
 
-    smbclient.register_session(server, username=username, password=password)
-
-    for filename in listdir(folder, port=port):
-        print(filename)
+        for filename in smbclient.listdir('//' + server + '/' + share + '/' + folder, port=port):
+            result.append(filename)
+    except Exception as error:
+        print(error)
+        result = []
+    return result
 }
 
 /// Create a new folder
@@ -28,6 +27,20 @@ ClassMethod CreateFolder(server, port, share, username, password, folder) As %St
     try:
         smbclient.register_session(server, port=port, username=username, password=password)
         smbclient.mkdir('//' + server + '/' + share + '/' + folder, port=port)
+        return 1
+    except Exception as error:
+        print(error)
+        return 0
+}
+
+/// Create a new folder
+ClassMethod DeleteFolder(server, port, share, username, password, folder) As %Status [ Language = python ]
+{
+    import smbclient
+    from smbclient import rmdir
+    try:
+        smbclient.register_session(server, port=port, username=username, password=password)
+        smbclient.rmdir('//' + server + '/' + share + '/' + folder, port=port)
         return 1
     except Exception as error:
         print(error)
