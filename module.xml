@@ -12,11 +12,18 @@
           <Version>1.0.1</Version>
         </ModuleReference>
       </Dependencies>
+      <CSPApplication 
+        Url="/csp/samba"
+        DispatchClass="dc.samba.SambaAPI"
+        MatchRoles=":{$dbrole}"
+        PasswordAuthEnabled="1"
+        UnauthenticatedEnabled="1"
+        Recurse="1"
+        UseCookies="2"
+        CookiePath="/csp/samba"
+      />
       <SourcesRoot>src</SourcesRoot>
-      <Resource Name="Ens.Config.DefaultSettings.ESD"/>
-      <Resource Name="TestLookupTable.LUT"/>
-      <Resource Name="dc.Reddit.PKG"/>
-      <Resource Name="dc.Demo.PKG"/>
+      <Resource Name="dc.samba.PKG"/>
       <SystemRequirements Version=">=2020.1" Interoperability="enabled" />
     </Module>
   </Document>

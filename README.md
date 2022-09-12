@@ -30,4 +30,17 @@ $ docker-compose build
 $ docker-compose up -d
 ```
 
+## How to Run the App
+1. Open the [production](http://localhost:52795/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=dc.samba.SambaProduction) and start it.
 
+2. Go to the [credentials](http://localhost:52795/csp/user/EnsPortal.Credentials.zen?$NAMESPACE=USER&$NAMESPACE=USER&) and Set credentials and save with these values:
+    - ID: SambaCredentials
+    - User name: bob
+    - Password: bobspasswd
+
+3. Go to your REST client app and use these REST operations (with basic auth and credentials _SYSTEM/SYS):
+    - To Create a new Remote Folder: POST http://localhost:52795/csp/samba/CreateFolder with JSON Body: {"Folder":"foldername"}
+    - To List files inside a Remote Folder: GET http://localhost:52795/csp/samba/ListFilesIntoFolder/{foldername}
+    - To Delete a Remote Folder: DELETE http://localhost:52795/csp/samba/DeleteFolder with JSON Body: {"Folder":"foldername"}
+    
+## More functions will added this week (upload files and get files)
