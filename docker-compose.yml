@@ -4,6 +4,7 @@ services:
     image: dperson/samba
     environment:
       TZ: 'EST5EDT'
+      PERMISSIONS: ''
     networks:
       - default
     ports:
@@ -17,7 +18,10 @@ services:
     restart: unless-stopped
     stdin_open: true
     tty: true
-    command: '-s "Mount;/mnt" -s "BobDrive;/mnt;yes;no;no;bob" -u "bob;bobspasswd" -p'
+    volumes:
+      - /mnt:/mnt
+      - /mnt2:/mnt2
+    command: '-s "Mount;/mnt" -s "BobDrive;/mnt2;yes;no;no;bob" -u "bob;bobspasswd" -p'
   
   iris:
     build: 
