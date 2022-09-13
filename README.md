@@ -42,8 +42,8 @@ $ docker-compose up -d
 3. Go to your REST client app and use these REST operations (with basic auth and credentials _SYSTEM/SYS):
     - To Create a new Remote Folder: POST http://localhost:52795/csp/samba/CreateFolder with JSON Body: {"Folder":"foldername"}
     - To Send a File to a Remote Folder: POST http://localhost:52795/csp/samba/CreateFile/foldername with form-data selected to send multipart file. The name of the multipart file is file and in value select any file from your computer, check this image with a example using postman:
-    ![Upload](https://github.com/yurimarx/samba-iris-adapter/raw/main/savefile.jpg "Upload")
+    ![Upload](https://github.com/yurimarx/samba-iris-adapter/raw/master/savefile.jpg "Upload")
     - To List files inside a Remote Folder: GET http://localhost:52795/csp/samba/ListFilesIntoFolder/{foldername}
     - To Delete a Remote Folder: DELETE http://localhost:52795/csp/samba/DeleteFolder with JSON Body: {"Folder":"foldername"}
     
-## More functions will added this week (upload files and get files)
+## More functions will added this week (download files)
