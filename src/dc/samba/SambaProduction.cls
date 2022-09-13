@@ -10,6 +10,8 @@ XData ProductionDefinition
   </Item>
   <Item Name="SambaCreateFileService" Category="" ClassName="dc.samba.SambaCreateFileService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
   </Item>
+  <Item Name="SambaDownloadFileService" Category="" ClassName="dc.samba.SambaDownloadFileService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
   <Item Name="SambaDeleteFolderService" Category="" ClassName="dc.samba.SambaDeleteFolderService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
   </Item>
   <Item Name="SambaListIntoFolderService" Category="" ClassName="dc.samba.SambaListIntoFolderService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">

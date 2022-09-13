@@ -44,6 +44,8 @@ $ docker-compose up -d
     - To Send a File to a Remote Folder: POST http://localhost:52795/csp/samba/CreateFile/foldername with form-data selected to send multipart file. The name of the multipart file is file and in value select any file from your computer, check this image with a example using postman:
     ![Upload](https://github.com/yurimarx/samba-iris-adapter/raw/master/savefile.jpg "Upload")
     - To List files inside a Remote Folder: GET http://localhost:52795/csp/samba/ListFilesIntoFolder/{foldername}
+    - To Get a File: POST http://localhost:52795/csp/samba/DownloadFile with JSON Body: {"Folder":"directory4", "Filename":"cat.jpg"}. Check this image as sample:
+    ![Download](https://github.com/yurimarx/samba-iris-adapter/raw/master/downloadfile.jpg "Download")
     - To Delete a Remote Folder: DELETE http://localhost:52795/csp/samba/DeleteFolder with JSON Body: {"Folder":"foldername"}
     
 ## More functions will added this week (download files)

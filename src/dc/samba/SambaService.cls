@@ -51,6 +51,27 @@ ClassMethod CreateFile(server, port, share, username, password, folder, filepath
         return 0
 }
 
+/// Download a remote file
+ClassMethod DownloadFile(server, port, share, username, password, folder, filename) As %String [ Language = python ]
+{
+    import smbclient
+    from smbclient import open_file
+    try:
+        
+        smbclient.register_session(server, port=port, username=username, password=password)
+        with smbclient.open_file('//' + server + '/' + share + '/' + folder + '/' + filename, port=port, mode="rb") as fd:
+            file_bytes = fd.read()
+        
+        with open('/tmp/' + filename, mode='wb') as file: # b is important -> binary
+            file.write(file_bytes)
+            file.close()
+
+        return '/tmp/' + filename
+    except Exception as error:
+        print(error)
+        return "Error when get remote file and write to disk"
+}
+
 /// Create a new folder
 ClassMethod DeleteFolder(server, port, share, username, password, folder) As %Status [ Language = python ]
 {
