@@ -18,6 +18,9 @@ XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 <!-- Create Folder -->
 <Route Url="/CreateFolder" Method="POST" Call="CreateFolder" />
 
+<!-- Post File into a Folder -->
+<Route Url="/CreateFile/:Folder" Method="POST" Call="CreateFile" />
+
 <!-- Delete Folder -->
 <Route Url="/DeleteFolder" Method="DELETE" Call="DeleteFolder" />
 
@@ -54,6 +57,42 @@ ClassMethod DeleteFolder() As %Status
     Set tSC = tBS.ProcessInput(req, .resp)
       
 	quit tSC
+}
+
+ClassMethod CreateFile(Folder As %String) As %Status
+{
+   
+    //try to do the actions
+    try {
+        Set info = {}
+        Set source = %request.GetMimeData("file")
+        Set destination=##class(%Stream.FileBinary).%New()
+        Set destination.Filename="/tmp/"_source.FileName
+        set tSC=destination.CopyFrom(source) //reader open the file
+        set result=destination.%Save()
+        Set req=##class(dc.samba.CreateFileMessage).%New()
+        Set req.Folder = Folder
+        Set req.Filepath = "/tmp/"_source.FileName
+        Set req.Filename = source.FileName
+        Do ##class(Ens.Director).CreateBusinessService("SambaCreateFileService", .tBS)
+        Set tSC = tBS.ProcessInput(req, .resp)
+    
+        set info.message = "File saved"
+       
+        Set %response.ContentType = ..#CONTENTTYPEJSON
+        Set %response.Headers("Access-Control-Allow-Origin")="*"
+ 
+        Write info.%ToJSON()
+ 
+        Set tSC=$$$OK
+   
+    //returns error message to the user
+    } catch e {
+        Set tSC=e.AsStatus()
+        Set pOutput = tSC
+    }
+ 
+    Quit tSC
 }
 
 ClassMethod ListFilesIntoFolder(Folder As %String) As %Status

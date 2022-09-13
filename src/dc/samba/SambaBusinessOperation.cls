@@ -33,6 +33,26 @@ Method CreateFolder(pReq As dc.samba.CreateFolderMessage, Output pResponse As En
     Return sc
 }
 
+/// Create Remote Files using SMB
+Method CreateFile(pReq As dc.samba.CreateFileMessage, Output pResponse As Ens.StringResponse) As %Status
+{
+    Set sc = $$$OK
+    
+    Set cred = ##class(Ens.Config.Credentials).%OpenId(..Credentials)
+    Set username = cred.Username
+    Set password = cred.Password  
+    Set server = ..Server
+    Set port = ..Port
+    Set share = ..Share
+    Set folder = pReq.Folder
+    Set filepath = pReq.Filepath
+    Set filename = pReq.Filename
+
+    Set sc = ##class(dc.samba.SambaService).CreateFile(server, port, share, username, password, folder, filepath, filename)
+
+    Return sc
+}
+
 /// Remove Remote Folders using SMB
 Method DeleteFolder(pReq As dc.samba.DeleteFolderMessage, Output pResponse As Ens.StringResponse) As %Status
 {
@@ -80,6 +100,9 @@ XData MessageMap
 <MapItems>
   <MapItem MessageType="dc.samba.CreateFolderMessage">
     <Method>CreateFolder</Method>
+  </MapItem>
+  <MapItem MessageType="dc.samba.CreateFileMessage">
+    <Method>CreateFile</Method>
   </MapItem>
   <MapItem MessageType="dc.samba.DeleteFolderMessage">
     <Method>DeleteFolder</Method>
