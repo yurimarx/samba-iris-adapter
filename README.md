@@ -9,7 +9,7 @@ Using this adapter is possible read, write and find remote files and folders usi
 
 Open IRIS Namespace with Interoperability Enabled.
 Open Terminal and call:
-USER>zpm "install interoperability-sample"
+USER>zpm "install samba-iris-adapter"
 
 ## Installation: Docker
 Clone/git pull the repo into any local directory
