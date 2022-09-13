@@ -17,7 +17,7 @@ services:
     restart: unless-stopped
     stdin_open: true
     tty: true
-    command: '-s "Mount;/mnt" -s "BobDrive;/mnt2;yes;no;no;bob" -u "bob;bobspasswd" -p'
+    command: '-s "Mount;/mnt" -s "BobDrive;/mnt;yes;no;no;bob" -u "bob;bobspasswd" -p'
   
   iris:
     build: 
