@@ -36,6 +36,8 @@ $ docker-compose up -d
     - ID: SambaCredentials
     - User name: bob
     - Password: bobspasswd
+Check this image as result:
+    ![Credentials](https://github.com/yurimarx/samba-iris-adapter/raw/master/credentials.jpg "Credentials")
 
 2. Open the [production](http://localhost:52795/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=dc.samba.SambaProduction) and start it.
 
