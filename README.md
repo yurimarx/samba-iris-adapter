@@ -48,4 +48,3 @@ $ docker-compose up -d
     ![Download](https://github.com/yurimarx/samba-iris-adapter/raw/master/downloadfile.jpg "Download")
     - To Delete a Remote Folder: DELETE http://localhost:52795/csp/samba/DeleteFolder with JSON Body: {"Folder":"foldername"}
     
-## More functions will added this week (download files)
