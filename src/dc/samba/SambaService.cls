@@ -7,15 +7,11 @@ ClassMethod ListFiles(server, port, share, username, password, folder) As %Statu
     import smbclient
     from smbclient import listdir
     
-    try:
-        smbclient.register_session(server, port=port, username=username, password=password)
-        result = []
+    smbclient.register_session(server, port=port, username=username, password=password)
+    result = []
 
-        for filename in smbclient.listdir('//' + server + '/' + share + '/' + folder, port=port):
-            result.append(filename)
-    except Exception as error:
-        print(error)
-        result = []
+    for filename in smbclient.listdir('//' + server + '/' + share + '/' + folder, port=port):
+        result.append(filename)
     return result
 }
 
@@ -24,13 +20,10 @@ ClassMethod CreateFolder(server, port, share, username, password, folder) As %St
 {
     import smbclient
     from smbclient import mkdir
-    try:
-        smbclient.register_session(server, port=port, username=username, password=password)
-        smbclient.mkdir('//' + server + '/' + share + '/' + folder, port=port)
-        return 1
-    except Exception as error:
-        print(error)
-        return 0
+
+    smbclient.register_session(server, port=port, username=username, password=password)
+    smbclient.mkdir('//' + server + '/' + share + '/' + folder, port=port)
+    return 1
 }
 
 /// Create a new folder
@@ -38,17 +31,14 @@ ClassMethod CreateFile(server, port, share, username, password, folder, filepath
 {
     import smbclient
     from smbclient import open_file
-    try:
-        with open(filepath, mode='rb') as file: # b is important -> binary
-            fileContent = file.read()
 
-        smbclient.register_session(server, port=port, username=username, password=password)
-        with smbclient.open_file('//' + server + '/' + share + '/' + folder + '/' + filename, port=port, mode="wb") as fd:
-            fd.write(fileContent)
-        return 1
-    except Exception as error:
-        print(error)
-        return 0
+    with open(filepath, mode='rb') as file: # b is important -> binary
+        fileContent = file.read()
+
+    smbclient.register_session(server, port=port, username=username, password=password)
+    with smbclient.open_file('//' + server + '/' + share + '/' + folder + '/' + filename, port=port, mode="wb") as fd:
+        fd.write(fileContent)
+    return 1
 }
 
 /// Download a remote file
@@ -56,20 +46,16 @@ ClassMethod DownloadFile(server, port, share, username, password, folder, filena
 {
     import smbclient
     from smbclient import open_file
-    try:
         
-        smbclient.register_session(server, port=port, username=username, password=password)
-        with smbclient.open_file('//' + server + '/' + share + '/' + folder + '/' + filename, port=port, mode="rb") as fd:
-            file_bytes = fd.read()
-        
-        with open('/tmp/' + filename, mode='wb') as file: # b is important -> binary
-            file.write(file_bytes)
-            file.close()
+    smbclient.register_session(server, port=port, username=username, password=password)
+    with smbclient.open_file('//' + server + '/' + share + '/' + folder + '/' + filename, port=port, mode="rb") as fd:
+        file_bytes = fd.read()
+    
+    with open('/tmp/' + filename, mode='wb') as file: # b is important -> binary
+        file.write(file_bytes)
+        file.close()
 
-        return '/tmp/' + filename
-    except Exception as error:
-        print(error)
-        return "Error when get remote file and write to disk"
+    return '/tmp/' + filename
 }
 
 /// Create a new folder
@@ -77,13 +63,10 @@ ClassMethod DeleteFolder(server, port, share, username, password, folder) As %St
 {
     import smbclient
     from smbclient import rmdir
-    try:
-        smbclient.register_session(server, port=port, username=username, password=password)
-        smbclient.rmdir('//' + server + '/' + share + '/' + folder, port=port)
-        return 1
-    except Exception as error:
-        print(error)
-        return 0
+    
+    smbclient.register_session(server, port=port, username=username, password=password)
+    smbclient.rmdir('//' + server + '/' + share + '/' + folder, port=port)
+    return 1
 }
 
 }
