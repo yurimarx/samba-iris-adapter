@@ -5,7 +5,7 @@ Parameter ADAPTER = "Ens.OutboundAdapter";
 
 Parameter INVOCATION = "Queue";
 
-Parameter SETTINGS = "Server:Basic,Port:Basic,Share:Basic,Folder:Basic,Credentials:Basic";
+Parameter SETTINGS = "Server:Basic,Port:Basic,Share:Basic,Credentials:Basic:credentialsSelector";
 
 Property Server As %String;
 
@@ -28,7 +28,11 @@ Method CreateFolder(pReq As dc.samba.CreateFolderMessage, Output pResponse As En
     Set share = ..Share
     Set folder = pReq.Folder
 
-    Set sc = ##class(dc.samba.SambaService).CreateFolder(server, port, share, username, password, folder)
+    Try {
+      Set sc = ##class(dc.samba.SambaService).CreateFolder(server, port, share, username, password, folder)
+    } Catch ex {
+      Set sc = ex.AsStatus()
+    }
 
     Return sc
 }
@@ -48,7 +52,12 @@ Method CreateFile(pReq As dc.samba.CreateFileMessage, Output pResponse As Ens.St
     Set filepath = pReq.Filepath
     Set filename = pReq.Filename
 
-    Set sc = ##class(dc.samba.SambaService).CreateFile(server, port, share, username, password, folder, filepath, filename)
+    try {
+      Set sc = ##class(dc.samba.SambaService).CreateFile(server, port, share, username, password, folder, filepath, filename)
+    } Catch ex {
+      Set sc = ex.AsStatus()
+    }
+
 
     Return sc
 }
@@ -67,10 +76,14 @@ Method DownloadFile(pReq As dc.samba.DownloadFileMessage, Output pResponse As dc
     Set folder = pReq.Folder
     Set filename = pReq.Filename
 
-    Set downloadedFilePath = ##class(dc.samba.SambaService).DownloadFile(server, port, share, username, password, folder, filename)
+    try {
+      Set downloadedFilePath = ##class(dc.samba.SambaService).DownloadFile(server, port, share, username, password, folder, filename)
 
-    Set pResponse = ##class(dc.samba.DownloadFileResponseMessage).%New()
-    Set pResponse.Filepath = downloadedFilePath
+      Set pResponse = ##class(dc.samba.DownloadFileResponseMessage).%New()
+      Set pResponse.Filepath = downloadedFilePath
+    } Catch ex {
+      Set sc = ex.AsStatus()
+    }
 
     Return sc
 }
@@ -88,7 +101,11 @@ Method DeleteFolder(pReq As dc.samba.DeleteFolderMessage, Output pResponse As En
     Set share = ..Share
     Set folder = pReq.Folder
 
-    Set sc = ##class(dc.samba.SambaService).DeleteFolder(server, port, share, username, password, folder)
+    try {
+      Set sc = ##class(dc.samba.SambaService).DeleteFolder(server, port, share, username, password, folder)
+    } Catch ex {
+      Set sc = ex.AsStatus()
+    }
 
     Return sc
 }
@@ -106,12 +123,16 @@ Method ListFilesIntoFolder(pReq As dc.samba.ListIntoFolderMessage, pResponse As 
     Set share = ..Share
     Set folder = pReq.Folder
 
-    Set result = ##class(dc.samba.SambaService).ListFiles(server, port, share, username, password, folder)
+    try {
+      Set result = ##class(dc.samba.SambaService).ListFiles(server, port, share, username, password, folder)
 
-    Set pResponse = ##class(dc.samba.FolderListResponseMessage).%New()
+      Set pResponse = ##class(dc.samba.FolderListResponseMessage).%New()
 
-    for i = 1:1:result.Count() {
-      Do pResponse.SambaFiles.Insert(result.GetAt(i))
+      For i = 1:1:result.Count() {
+        Do pResponse.SambaFiles.Insert(result.GetAt(i))
+      }
+    } Catch ex {
+      Set sc = ex.AsStatus()
     }
   
     Return sc

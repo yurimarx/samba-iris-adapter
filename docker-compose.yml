@@ -19,8 +19,8 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - /mnt:/mnt
-      - /mnt2:/mnt2
+      - ./mnt:/mnt
+      - ./mnt2:/mnt2
     command: '-s "Mount;/mnt" -s "BobDrive;/mnt2;yes;no;no;bob" -u "bob;bobspasswd" -p'
   
   iris:

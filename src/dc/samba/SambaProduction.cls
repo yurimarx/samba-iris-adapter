@@ -18,7 +18,7 @@ XData ProductionDefinition
   </Item>
   <Item Name="SambaBusinessOperation" Category="" ClassName="dc.samba.SambaBusinessOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="Port">139</Setting>
-    <Setting Target="Host" Name="Server">samba-iris-adapter-samba-1</Setting>
+    <Setting Target="Host" Name="Server">samba</Setting>
     <Setting Target="Host" Name="Share">BobDrive</Setting>
     <Setting Target="Host" Name="Credentials">SambaCredentials</Setting>
   </Item>
