@@ -49,4 +49,11 @@ Check this image as result:
     - To Get a File: POST http://localhost:52795/csp/samba/DownloadFile with JSON Body: {"Folder":"directory4", "Filename":"cat.jpg"}. Check this image as sample:
     ![Download](https://github.com/yurimarx/samba-iris-adapter/raw/master/downloadfile.jpg "Download")
     - To Delete a Remote Folder: DELETE http://localhost:52795/csp/samba/DeleteFolder with JSON Body: {"Folder":"foldername"}
+
+    ## Credits
+    -  smbprotocol: https://github.com/jborean93/smbprotocol
+    -  samba dperson docker image: https://github.com/dperson/samba
+    -  IRIS interoperability template: https://openexchange.intersystems.com/package/iris-interoperability-template
+    -  Dmitry Maslennikov and Evgeny for help me with some bugs
+
     
