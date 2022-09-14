@@ -1,4 +1,4 @@
-Class dc.samba.DownloadFileMessage Extends Ens.Request
+Class dc.samba.DownloadFileMessage Extends dc.samba.SambaMessage
 {
 
 Property Folder As %String;
@@ -10,9 +10,6 @@ Storage Default
 <Data name="DownloadFileMessageDefaultData">
 <Subscript>"DownloadFileMessage"</Subscript>
 <Value name="1">
-<Value>Folder</Value>
-</Value>
-<Value name="2">
 <Value>Filename</Value>
 </Value>
 </Data>

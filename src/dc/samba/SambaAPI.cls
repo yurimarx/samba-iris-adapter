@@ -41,7 +41,7 @@ ClassMethod CreateFolder() As %Status
     
     Set data = {}.%FromJSON(%request.Content)
 
-    Do ##class(Ens.Director).CreateBusinessService("SambaCreateFolderService", .tBS)
+    Do ##class(Ens.Director).CreateBusinessService("SambaBusinessService", .tBS)
     Set req = ##class(dc.samba.CreateFolderMessage).%New()
     Set req.Folder = data.Folder
     Set tSC = tBS.ProcessInput(req, .resp)
@@ -55,7 +55,7 @@ ClassMethod DownloadFile() As %Status
     
     Set data = {}.%FromJSON(%request.Content)
 
-    Do ##class(Ens.Director).CreateBusinessService("SambaDownloadFileService", .tBS)
+    Do ##class(Ens.Director).CreateBusinessService("SambaBusinessService", .tBS)
     Set req = ##class(dc.samba.DownloadFileMessage).%New()
     Set req.Folder = data.Folder
     Set req.Filename = data.Filename
@@ -79,7 +79,7 @@ ClassMethod DeleteFolder() As %Status
     
     Set data = {}.%FromJSON(%request.Content)
 
-    Do ##class(Ens.Director).CreateBusinessService("SambaDeleteFolderService", .tBS)
+    Do ##class(Ens.Director).CreateBusinessService("SambaBusinessService", .tBS)
     Set req = ##class(dc.samba.DeleteFolderMessage).%New()
     Set req.Folder = data.Folder
     Set tSC = tBS.ProcessInput(req, .resp)
@@ -102,7 +102,7 @@ ClassMethod CreateFile(Folder As %String) As %Status
         Set req.Folder = Folder
         Set req.Filepath = "/tmp/"_source.FileName
         Set req.Filename = source.FileName
-        Do ##class(Ens.Director).CreateBusinessService("SambaCreateFileService", .tBS)
+        Do ##class(Ens.Director).CreateBusinessService("SambaBusinessService", .tBS)
         Set tSC = tBS.ProcessInput(req, .resp)
     
         set info.message = "File saved"
@@ -128,7 +128,7 @@ ClassMethod ListFilesIntoFolder(Folder As %String) As %Status
 	//HANG 15
     Set tSC = $$$OK
     
-    Do ##class(Ens.Director).CreateBusinessService("SambaListIntoFolderService", .tBS)
+    Do ##class(Ens.Director).CreateBusinessService("SambaBusinessService", .tBS)
     Set req = ##class(dc.samba.ListIntoFolderMessage).%New()
     Set req.Folder = Folder
     Set tSC = tBS.ProcessInput(req, .sambaResponse)

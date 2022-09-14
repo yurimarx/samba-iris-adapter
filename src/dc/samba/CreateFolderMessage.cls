@@ -1,17 +1,10 @@
-Class dc.samba.CreateFolderMessage Extends Ens.Request
+Class dc.samba.CreateFolderMessage Extends dc.samba.SambaMessage
 {
 
 Property Folder As %String;
 
 Storage Default
 {
-<Data name="CreateFolderMessageDefaultData">
-<Subscript>"CreateFolderMessage"</Subscript>
-<Value name="1">
-<Value>Folder</Value>
-</Value>
-</Data>
-<DefaultData>CreateFolderMessageDefaultData</DefaultData>
 <Type>%Storage.Persistent</Type>
 }
 

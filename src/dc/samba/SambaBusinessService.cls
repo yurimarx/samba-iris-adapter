@@ -1,9 +1,9 @@
-Class dc.samba.SambaListIntoFolderService Extends Ens.BusinessService
+Class dc.samba.SambaBusinessService Extends Ens.BusinessService
 {
 
 Parameter ADAPTER = "Ens.InboundAdapter";
 
-Method OnProcessInput(pInput As dc.samba.ListIntoFolderMessage, Output pOutput As dc.samba.FolderListResponseMessage) As %Status
+Method OnProcessInput(pInput As dc.samba.SambaMessage, pOutput As Ens.Response) As %Status
 {
     Set tSC=$$$OK
     

@@ -1,17 +1,10 @@
-Class dc.samba.DeleteFolderMessage Extends Ens.Request
+Class dc.samba.DeleteFolderMessage Extends dc.samba.SambaMessage
 {
 
 Property Folder As %String;
 
 Storage Default
 {
-<Data name="DeleteFolderMessageDefaultData">
-<Subscript>"DeleteFolderMessage"</Subscript>
-<Value name="1">
-<Value>Folder</Value>
-</Value>
-</Data>
-<DefaultData>DeleteFolderMessageDefaultData</DefaultData>
 <Type>%Storage.Persistent</Type>
 }
 

@@ -1,4 +1,4 @@
-Class dc.samba.CreateFileMessage Extends Ens.Request
+Class dc.samba.CreateFileMessage Extends dc.samba.SambaMessage
 {
 
 Property Folder As %String;
@@ -12,12 +12,9 @@ Storage Default
 <Data name="CreateFileMessageDefaultData">
 <Subscript>"CreateFileMessage"</Subscript>
 <Value name="1">
-<Value>Folder</Value>
-</Value>
-<Value name="2">
 <Value>Filepath</Value>
 </Value>
-<Value name="3">
+<Value name="2">
 <Value>Filename</Value>
 </Value>
 </Data>
