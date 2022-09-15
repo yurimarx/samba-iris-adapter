@@ -4,7 +4,7 @@
     <Module>
       <Name>samba-iris-adapter</Name>
       <Description>Samba protocol (smb v2) support for InterSystems IRIS</Description>
-      <Version>1.0.21</Version>
+      <Version>1.0.22</Version>
       <Packaging>module</Packaging>
       <Dependencies>
         <ModuleReference>
