@@ -41,7 +41,7 @@ Check this image as result:
 
 2. Open the [production](http://localhost:52795/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=dc.samba.SambaProduction) and start it.
 
-3. Go to your REST client app and use these REST operations (with basic auth and credentials _SYSTEM/SYS):
+3. Go to your REST client app and use these REST operations or download postman project with request samples (https://github.com/yurimarx/samba-iris-adapter/raw/master/SambaAPICollection.postman_collection.json) (with basic auth and credentials _SYSTEM/SYS):
     - To Create a new Remote Folder: POST http://localhost:52795/csp/samba/CreateFolder with JSON Body: {"Folder":"foldername"}
     - To Send a File to a Remote Folder: POST http://localhost:52795/csp/samba/CreateFile/foldername with form-data selected to send multipart file. The name of the multipart file is file and in value select any file from your computer, check this image with a example using postman:
     ![Upload](https://github.com/yurimarx/samba-iris-adapter/raw/master/savefile.jpg "Upload")
