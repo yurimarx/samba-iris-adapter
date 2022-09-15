@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "f3294803-71e5-46eb-8a3e-9abd63b1d6dc",
+		"name": "SambaAPICollection",
+		"description": "Samba Postman API request samples",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Create a New Folder",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"Folder\":\"sambafoldertest\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:52795/csp/samba/CreateFolder",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52795",
+					"path": [
+						"csp",
+						"samba",
+						"CreateFolder"
+					]
+				},
+				"description": "Create a remote folder"
+			},
+			"response": []
+		},
+		{
+			"name": "2. Create a remote file",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/projetos/isc/imagedetector/input/cat.jpg"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:52795/csp/samba/CreateFile/sambafoldertest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52795",
+					"path": [
+						"csp",
+						"samba",
+						"CreateFile",
+						"sambafoldertest"
+					]
+				},
+				"description": "Create a remote file"
+			},
+			"response": []
+		},
+		{
+			"name": "3. List Files into a remote Folder",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:52795/csp/samba/ListFilesIntoFolder/sambafoldertest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52795",
+					"path": [
+						"csp",
+						"samba",
+						"ListFilesIntoFolder",
+						"sambafoldertest"
+					]
+				},
+				"description": "List Files into a remote Folder"
+			},
+			"response": []
+		},
+		{
+			"name": "4. Download a remote file",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"Folder\":\"sambafoldertest\", \"Filename\":\"cat.jpg\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:52795/csp/samba/DownloadFile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52795",
+					"path": [
+						"csp",
+						"samba",
+						"DownloadFile"
+					]
+				},
+				"description": "Create a remote file"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "SYS",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "_SYSTEM",
+				"type": "string"
+			}
+		]
+	}
+}
