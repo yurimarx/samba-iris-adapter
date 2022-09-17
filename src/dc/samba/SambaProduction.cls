@@ -7,12 +7,12 @@ XData ProductionDefinition
   <Description></Description>
   <ActorPoolSize>2</ActorPoolSize>
   <Item Name="SambaBusinessService" Category="" ClassName="dc.samba.SambaBusinessService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-  </Item> 
+  </Item>
   <Item Name="SambaBusinessOperation" Category="" ClassName="dc.samba.SambaBusinessOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Host" Name="Port">139</Setting>
-    <Setting Target="Host" Name="Server">samba</Setting>
-    <Setting Target="Host" Name="Share">BobDrive</Setting>
-    <Setting Target="Host" Name="Credentials">SambaCredentials</Setting>
+    <Setting Target="Adapter" Name="Port">139</Setting>
+    <Setting Target="Adapter" Name="Server">samba</Setting>
+    <Setting Target="Adapter" Name="Share">BobShare</Setting>
+    <Setting Target="Adapter" Name="Credentials">SambaCredentials</Setting>
   </Item>
 </Production>
 }
