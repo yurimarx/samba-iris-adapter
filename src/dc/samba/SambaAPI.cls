@@ -37,7 +37,7 @@ XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 
 ClassMethod CreateFolder() As %Status
 {
-	Set tSC = $$$OK
+    Set tSC = $$$OK
     
     Set data = {}.%FromJSON(%request.Content)
 

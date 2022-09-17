@@ -30,12 +30,12 @@ ClassMethod TestCreateFolder() As %Status
     Set password = "bobspasswd"
     Set server = "samba-iris-adapter-samba-1"
     Set share = "BobDrive"
-    Set folder = "directory4"
+    Set folder = "directory44"
     Set port = 445
     
-    Set result = ##class(dc.samba.SambaService).ListFiles(server, port, share, username, password, folder)
+    Set tSC = ##class(dc.samba.SambaService).CreateFolder(server, port, share, username, password, folder)
 
-    for i = 1:1:result.Count() {write !, result.GetAt(i)}
+    Write tSC.AsStatus()
 
     Return sc
 }

@@ -13,7 +13,9 @@ Method CreateFolder(pReq As dc.samba.CreateFolderMessage, Output pResponse As En
     Set port = ..Port
     Set share = ..Share
     Set folder = pReq.Folder
-
+    Set message = "Username: "_username_", Password: xxxx, Server: "_server_", Port:"_port_", Share: "_share_" Folder: "_folder 
+    Do ##class(Ens.Util.Log).LogInfo($CLASSNAME(),"CreateFolder", message)
+     
     Try {
       Set sc = ##class(dc.samba.SambaService).CreateFolder(server, port, share, username, password, folder)
     } Catch ex {
