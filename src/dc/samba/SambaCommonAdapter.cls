@@ -2,11 +2,11 @@
 Class dc.samba.SambaCommonAdapter Extends %RegisteredObject [ Abstract ]
 {
 
-Property Server As %String(MAXLEN = "");
+Property Server As %String(MAXLEN = "") [ InitialExpression = "samba" ];
 
-Property Port As %Integer;
+Property Port As %Integer [ InitialExpression = 139 ];
 
-Property Share As %String(MAXLEN = "");
+Property Share As %String(MAXLEN = "") [ InitialExpression = "BobShare" ];
 
 Parameter SETTINGS = "Server:Basic,Port:Basic,Share:Basic,Credentials:Basic:credentialsSelector";
 
