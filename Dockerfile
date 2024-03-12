@@ -10,7 +10,7 @@ ENV TZ=Etc/UTC
 # install libraries required ImageAI/OpenCV to process images and videos
 RUN apt-get -y update \
     && apt-get -y install apt-utils \
-    && apt-get install -y smbclient gcc python-dev libkrb5-dev \
+    && apt-get install -y smbclient gcc python-dev-is-python3 libkrb5-dev \
     && apt-get install -y python3 \
     && apt-get install -y python3-pip   
 
